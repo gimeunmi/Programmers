@@ -1,0 +1,42 @@
+public class Solution {
+	public String solution(int[][] scores) {
+		String answer = "";
+
+		StringBuilder sb = new StringBuilder();
+		
+
+		for (int i = 0; i < scores.length; i++) {
+      int div = scores.length;
+			int max = 0, sum = 0;
+			int min = 101;
+			for (int j = 0; j < scores.length; j++) {
+				int score = scores[j][i];
+				if (i != j) {
+					if (min > score) {
+						min = score;
+					}
+					if (max < score) {
+						max = score;
+					}
+				}
+				sum += score;
+
+			}
+			
+			if(scores[i][i]<min||scores[i][i]>max) {
+				sum-=scores[i][i];
+				div--;
+				
+			}
+			
+			double avg = (double)sum/div;
+			sb.append(avg>=90?"A":avg>=80?"B":avg>=70?"C":avg>=50?"D":"F");
+			
+			
+			
+		}
+		answer = sb.toString();
+		return answer;
+	}
+
+}
